@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
         if user.save
             render json: user
         else
-            render json: errors: user.errors.full_messages, status: :unauthorized
+            render json: {errors: user.errors.full_messages}, status: :not_acceptable
         end
     end
 
