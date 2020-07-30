@@ -23,7 +23,13 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def logged_in
+    def logged_in?
         !!@set_current_user
+    end
+
+    def protected_action
+        if !logged_in?
+            render json: { errors: ['You must be logged in!']}, status: :unauthorized
+        end 
     end
 end
